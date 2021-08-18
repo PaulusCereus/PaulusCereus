@@ -7,13 +7,13 @@ from tensorflow.keras.optimizers import Adam,Adadelta,SGD,Adagrad,RMSprop
 from tensorflow.keras.preprocessing.text import Tokenizer, text_to_word_sequence
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.callbacks import LambdaCallback
-
+from sklearn.model_selection import train_test_split
 import random
 import math
 import os
 import re
 
-df = pd.read_csv('/content/drive/My Drive/Базы/basketball.csv', encoding= 'cp1251', sep=';', header=0, index_col=0)
+df = pd.read_csv('/content/drive/MyDrive/basketball.csv', encoding= 'cp1251', sep=';', header=0, index_col=0)
 
 Xtrain = np.array(df[['Ком. 1','Ком. 2', 'ftime']].astype('int'))
 Ytrain = np.array(df['fcount'].astype('int'))
