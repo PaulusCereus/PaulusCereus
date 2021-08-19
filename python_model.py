@@ -13,9 +13,9 @@ import math
 import os
 import re
 
-df = pd.read_csv('/content/drive/MyDrive/basketball.csv', encoding= 'cp1251', sep=';', header=0, index_col=0)
+df = pd.read_csv('/content/drive/MyDrive/basket.csv', encoding= 'cp1251', sep=';', header=0, index_col=0)
 
-Xtrain = np.array(df[['COM. 1','COM. 2', 'ftime']].astype('int'))
+Xtrain = np.array(df[['COM 1','COM 2', 'ftime']].astype('int'))
 Ytrain = np.array(df['fcount'].astype('int'))
 
 x_train, x_test, y_train, y_test = train_test_split(Xtrain, Ytrain, test_size=0.05)
