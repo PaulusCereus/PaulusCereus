@@ -48,86 +48,16 @@ Other tasks:
 
 The project is compatible with Keras 2.x (all versions) and Python 3.x
 
-# Example
-
-python_model.py:
-
-```python
-import numpy as np
-from keras import Sequential
-from keras.layers import Dense
-
-#create random data
-test_x = np.random.rand(10, 10).astype('f')
-test_y = np.random.rand(10).astype('f')
-model = Sequential([
-    Dense(1, input_dim=10)
-])
-model.compile(loss='mse', optimizer='adam')
-
-#train model by 1 iteration
-model.fit(test_x, test_y, epochs=1, verbose=False)
-
-#predict
-data = np.array([[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]])
-prediction = model.predict(data)
-print(prediction)
-
-#save model
-from keras2cpp import export_model
-export_model(model, 'example.model')
-```
-
-cpp_model.cc:
-
-```c++
-#include "src/model.h"
-
-using keras2cpp::Model;
-using keras2cpp::Tensor;
-
-int main() {
-    // Initialize model.
-    auto model = Model::load("example.model");
-
-    // Create a 1D Tensor on length 10 for input data.
-    Tensor in{10};
-    in.data_ = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-
-    // Run prediction.
-    Tensor out = model(in);
-    out.print();
-    return 0;
-}
-```
-
 # How to build and run
 
 *Tested with Keras 2.2.1, Python 3.6*
 
 ```bash
-$ git clone https://github.com/gosha20777/keras2cpp.git
-$ cd keras2cpp
+$ git clone https://github.com/PaulusCereus/PaulusCereus.git
+$ cd PaulusCereus/
 $ mkdir build && cd build
 $ python3 ../python_model.py
-[[-1.85735667]]
 
 $ cmake ..
 $ cmake --build .
 $ ./keras2cpp
-[ -1.857357 ]
-```
-
-# License
-
-MIT
-
-# Similar projects
-
-I found another similar projects on Github:
-- <https://github.com/pplonski/keras2cpp/>;
-- <https://github.com/moof2k/kerasify>
-- <https://github.com/Dobiasd/frugally-deep>
-
-But It works only with Keras 1 and didn’t work for me. 
-That's why I wrote my own implementation.
